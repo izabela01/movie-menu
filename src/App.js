@@ -3,13 +3,13 @@ import {CarouselComp} from './features/CarouselComp.jsx'
 
 export function App() {
 
-    // async function getData(){
-    //     let response = await fetch('https://api.themoviedb.org/3/movie/550?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0');
-    //     let data = await response.json();
-    //     console.log(data);
-    // }
+    async function getData(){
+        let response = await fetch('https://api.themoviedb.org/3/movie/550?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0');
+        let data = await response.json();
+        console.log(data);
+    }
 
-    // getData();
+    getData();
 
 // Fetch the data - useEffect or fetch 
 
