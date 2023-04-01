@@ -16,13 +16,13 @@ export function App() {
         // Cycling through the array, printing the title field of each movie object
         data.results.forEach(movie => {
                 console.log('the movie title - ', movie.original_title);
+                const cardContainer = document.getElementById('card-container')
+                const card = document.createElement('card');
+                const ptag = document.createElement('p')
+                ptag.textContent = movie.original_title;
+                card.appendChild(ptag);
+                cardContainer.appendChild(card)
             });
-
-            const card = document.getElementById('card');
-            const ptag = document.createElement('p')
-            ptag.textContent = data.results[1].original_title;
-            card.appendChild(ptag);
-
         }
         else{
             console.log('error: api request error');
@@ -53,7 +53,7 @@ export function App() {
 <CarouselComp ></CarouselComp>
 
     <div className="container" id= "card-container">
-    <div id='card'className=' Card'>
+    <div id='card'className='Card'>
       <div className="imageContainer">
       <img src="https://www.shutterstock.com/image-vector/euphoria-quotetrippy-letteringvector-hand-drawn-600w-2252653729.jpg" alt="Euthoria series" className='image'/> 
       </div>
