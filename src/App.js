@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {CarouselComp} from './features/CarouselComp.jsx'
 
+
 export function App() {
+
+    const [dataArr, setDataArr] = useState(null);
 
         // Console log the data 
     async function getData(url){
@@ -12,6 +15,8 @@ export function App() {
         let data = await response.json();
         console.log('**** Data Set ***** ', data);
         console.log('*** accessing array ****', data.results);
+
+        setDataArr(data.results);
 
         // Cycling through the array, printing the title field of each movie object
         data.results.forEach(movie => {
@@ -31,14 +36,11 @@ export function App() {
             console.log('error: api request error');
         }
         }
-    // getData('https://api.themoviedb.org/3/movie/550?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0');
-    getData('https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate');
 
-  
-
-    // figure out the how to get it into individual components using props 
-    // dont worry about components, do everything here for now 
-
+    useEffect(() => {
+        getData('https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate')
+        }, 
+        []);
 
     return (
         <>
@@ -53,7 +55,7 @@ export function App() {
                 <div className="red-box"> </div>
                 <div className="blue-box"> </div>
                 </div>
-<CarouselComp id='carouselcomp'></CarouselComp>
+<CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>
 
     <div className="container" id= "card-container">
     <div id='card'className='Card'>
@@ -67,4 +69,3 @@ export function App() {
     );
 }
 
-// useEffect for the API call 

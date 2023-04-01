@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './styles.scss'
 import Carousel from 'react-bootstrap/Carousel';
 
 
 
-export function CarouselComp(){
+export function CarouselComp(data){
+
+  console.log('data in Carousel!', data);
+
+  useEffect(() => {}, 
+    [data]);
+
 return(
     <Carousel className="Carousel">
     <Carousel.Item>
@@ -14,7 +20,7 @@ return(
         alt="Caravan image with surfboards"
       />
       <Carousel.Caption>
-        <h3>First slide label</h3>
+        <h3>{data.original_title}</h3>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </Carousel.Caption>
     </Carousel.Item>
