@@ -8,6 +8,7 @@ export function App() {
         // Fetch the data - useEffect or fetch 
         let response = await fetch(url);
 
+        if( response.status >= 200 && response.status < 400){ 
         let data = await response.json();
         console.log('**** Data Set ***** ', data);
         console.log('*** accessing array ****', data.results);
@@ -16,6 +17,10 @@ export function App() {
         data.results.forEach(movie => {
                 console.log('the movie title - ', movie.original_title);
             });
+        }
+        else{
+            console.log('error: api request error');
+        }
         }
     // getData('https://api.themoviedb.org/3/movie/550?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0');
     getData('https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate');
