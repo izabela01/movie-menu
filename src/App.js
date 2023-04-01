@@ -17,9 +17,12 @@ export function App() {
         data.results.forEach(movie => {
                 console.log('the movie title - ', movie.original_title);
                 const cardContainer = document.getElementById('card-container')
-                const card = document.createElement('card');
+                const card = document.createElement('div');
+                const Movieimage = document.createElement('img');
+                Movieimage.src = 'https://www.shutterstock.com/image-vector/euphoria-quotetrippy-letteringvector-hand-drawn-600w-2252653729.jpg';
                 const ptag = document.createElement('p')
                 ptag.textContent = movie.original_title;
+                card.appendChild(Movieimage);
                 card.appendChild(ptag);
                 cardContainer.appendChild(card)
             });
@@ -50,7 +53,7 @@ export function App() {
                 <div className="red-box"> </div>
                 <div className="blue-box"> </div>
                 </div>
-<CarouselComp ></CarouselComp>
+<CarouselComp id='carouselcomp'></CarouselComp>
 
     <div className="container" id= "card-container">
     <div id='card'className='Card'>
