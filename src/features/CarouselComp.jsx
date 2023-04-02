@@ -4,10 +4,18 @@ import Carousel from 'react-bootstrap/Carousel';
 
 
 export function CarouselComp(data){
+
+  const [movies, setMovies] = useState(null);
+
+
   console.log('data in Carousel!', data.data);
   let localData = data.data;
   console.log('data in localData!',localData) ;
-  
+
+    // setMovies(data.data);
+    // console.log('movies', movies);
+
+
 
 return(
     <Carousel className="Carousel">
