@@ -1,23 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {CarouselComp} from './features/CarouselComp.jsx'
+import {getData} from './data/index.js'
 
 export function App() {
 
-    // async function getData(){
-    //     let response = await fetch('https://api.themoviedb.org/3/movie/550?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0');
-    //     let data = await response.json();
-    //     console.log(data);
-    // }
+    const [dataArr, setDataArr] = useState(null);
 
-    // getData();
-
-// Fetch the data - useEffect or fetch 
-
-
-// Console log the data 
-// figure out the how to get it into individual components using props 
-// dont worry about components, do everything here for now 
-
+    // I used stackoverflow to fix the data coming back but I dont fully understand
+    // it yet - https://stackoverflow.com/questions/38884522/why-is-my-asynchronous-function-returning-promise-pending-instead-of-a-val
+    // I had to await the getData for the data to resolve itself in the CarouselComp prop
+    useEffect(async () => {
+       let moviesList = await getData('https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate');
+       setDataArr(moviesList);
+        }, 
+        []);
 
     return (
         <>
@@ -32,15 +28,17 @@ export function App() {
                 <div className="red-box"> </div>
                 <div className="blue-box"> </div>
                 </div>
-<CarouselComp ></CarouselComp>
-    <div className=' Card'>
-      <img src="https://www.shutterstock.com/image-vector/euphoria-quotetrippy-letteringvector-hand-drawn-600w-2252653729.jpg" alt="Euthoria series" className='image'/> 
+<CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>
+
+    <div className="container" id= "card-container">
+    <div id='card'className='Card'>
       <div className="imageContainer">
-      <p>Filling in the space of the euthoria title art jaknajnjfejefjijefje</p>
+      <img src="https://www.shutterstock.com/image-vector/euphoria-quotetrippy-letteringvector-hand-drawn-600w-2252653729.jpg" alt="Euthoria series" className='image'/> 
       </div>
     </div>
+    </div>
+
         </>
     );
 }
 
-// useEffect for the API call 
