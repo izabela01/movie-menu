@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.scss'
 import Carousel from 'react-bootstrap/Carousel';
 
 
-
 export function CarouselComp(data){
-
-  console.log('data in Carousel!', data);
-
-  useEffect(() => {}, 
-    [data]);
+  console.log('data in Carousel!', data.data);
+  let localData = data.data;
+  console.log('data in localData!',localData) ;
+  
 
 return(
     <Carousel className="Carousel">
@@ -19,8 +17,9 @@ return(
         src="https://www.shutterstock.com/image-vector/summer-sea-landscape-tropical-island-600w-1034869381.jpg"
         alt="Caravan image with surfboards"
       />
+      
       <Carousel.Caption>
-        <h3>{data.original_title}</h3>
+        <h3>{data.results}</h3>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </Carousel.Caption>
     </Carousel.Item>
