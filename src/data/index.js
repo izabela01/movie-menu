@@ -28,4 +28,11 @@
         }
         }
 
-   
+        export async function getMoviesByActor(){
+
+            let url = 'https://api.themoviedb.org/3/search/person?query=ray%20liotta&api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&page=1&include_adult=true';
+            let response = await fetch(url);
+            let data = await response.json();
+            console.log('getMoviesByActor', await data);
+
+        }
