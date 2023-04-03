@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {CarouselComp} from './features/CarouselComp.jsx'
-import {getData} from './data/index.js'
+import {getData, getMoviesByActor} from './data/index.js'
 
 export function App() {
 
     const [dataArr, setDataArr] = useState(null);
+    const [moviesByActor, setMoviesByActor] = useState(null);
 
     // I used stackoverflow to fix the data coming back but I dont fully understand
     // it yet - https://stackoverflow.com/questions/38884522/why-is-my-asynchronous-function-returning-promise-pending-instead-of-a-val
     // I had to await the getData for the data to resolve itself in the CarouselComp prop
     useEffect(async () => {
        let moviesList = await getData('https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate');
+       let moviesListByActor = await getMoviesByActor();    
        setDataArr(moviesList);
         }, 
         []);
