@@ -43,5 +43,5 @@
             let response = await fetch(urlStart + formattedName + urlEnd);
             let data = await response.json();
             console.log('getMoviesByActor', await data);
-
+            return data.results[0].known_for;
         }

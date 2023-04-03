@@ -5,7 +5,7 @@ import {getData, getMoviesByActor} from './data/index.js'
 export function App() {
 
     const [dataArr, setDataArr] = useState(null);
-    const [moviesByActor, setMoviesByActor] = useState(null);
+    const [moviesByActor,  setMoviesByActor] = useState(null);
     const [name, setName] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -20,11 +20,16 @@ export function App() {
         []);
 
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        getMoviesByActor(name);
+        let moviesByActorList = await getMoviesByActor(name);
         setIsSubmitted(true);
-        alert(`The name you entered was: ${name}`)
+        setMoviesByActor(moviesByActorList);
+        console.log('moviesByActor', moviesByActor);
+       console.log('moviesByActorList', moviesByActorList);
+
+
     }
 
     return (
@@ -46,7 +51,7 @@ export function App() {
                 <div className="blue-box"> </div>
                 </div>
 <CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>
- {/* {isSubmitted ? <CarouselComp id='carouselcomp' data={name}></CarouselComp> : false} */}
+ {isSubmitted ? <CarouselComp id='carouselcomp' data={moviesByActor}></CarouselComp> : false}
 
     <div className="container" id= "card-container">
     <div id='card'className='Card'>
