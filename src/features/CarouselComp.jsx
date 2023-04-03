@@ -3,60 +3,45 @@ import './styles.scss'
 import Carousel from 'react-bootstrap/Carousel';
 
 
-export function CarouselComp(data){
-
+export function CarouselComp(props){
+  // improve naming conventions - props instead
   const [movies, setMovies] = useState(null);
 
+if(props.data){
+  console.log('data in Carousel!', props.data);
+  let localData = props.data;
+  let imageBaseUrl = 'https://image.tmdb.org/t/p/w300';
+  console.log('One item in array - ',localData[1]) ;
+}else{
+   console.log('skipping')
+}
 
-  console.log('data in Carousel!', data.data);
-  let localData = data.data;
-  console.log('data in localData!',localData) ;
+  // useEffect(() => {
 
-    // setMovies(data.data);
-    // console.log('movies', movies);
-
-
-
+  //    }, 
+  //    [data]);
 return(
+<>
+
+
     <Carousel className="Carousel">
+   
+   {props.data ? props.data.map(movie =>
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="https://www.shutterstock.com/image-vector/summer-sea-landscape-tropical-island-600w-1034869381.jpg"
-        alt="Caravan image with surfboards"
+        src={'https://image.tmdb.org/t/p/w300' + movie.poster_path} 
+        alt=""
       />
       
       <Carousel.Caption>
-        <h3>{data.results}</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <h3>{movie.original_title}</h3>
+        <p>{movie.overview}</p>
       </Carousel.Caption>
     </Carousel.Item>
-    <Carousel.Item>
-      <img
-        className="d-block w-100"
-        src="https://www.shutterstock.com/image-vector/summer-sea-landscape-tropical-island-600w-1034869381.jpg"
-        alt="Second slide"
-      />
-
-      <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-      <img
-        className="d-block w-100"
-        src="https://www.shutterstock.com/image-vector/summer-sea-landscape-tropical-island-600w-1034869381.jpg"
-        alt="Third slide"
-      />
-
-      <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-        </p>
-      </Carousel.Caption>
-    </Carousel.Item>
+   ): false };
   </Carousel>
+
+  </>
 )
 }

@@ -28,10 +28,19 @@
         }
         }
 
-        export async function getMoviesByActor(){
+        export async function getMoviesByActor(name){
 
-            let url = 'https://api.themoviedb.org/3/search/person?query=ray%20liotta&api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&page=1&include_adult=true';
-            let response = await fetch(url);
+            console.log('Actor name', name);
+            let urlStart = 'https://api.themoviedb.org/3/search/person?query='
+
+            const names = name.split(" ");
+            console.log('names', names);
+            const formattedName = names.join('%20');
+            console.log('formattedName', formattedName);
+            let urlEnd = '&api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&page=1&include_adult=true';
+
+
+            let response = await fetch(urlStart + formattedName + urlEnd);
             let data = await response.json();
             console.log('getMoviesByActor', await data);
 
