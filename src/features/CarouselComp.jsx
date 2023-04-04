@@ -8,7 +8,6 @@ export function CarouselComp(props){
   const [movies, setMovies] = useState(null);
 
 if(props.data){
-  console.log('data in Carousel!', props.data);
   let localData = props.data;
   let imageBaseUrl = 'https://image.tmdb.org/t/p/w300';
   console.log('One item in array - ',localData[1]) ;

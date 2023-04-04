@@ -5,7 +5,7 @@ import {getData, getMoviesByActor} from './data/index.js'
 export function App() {
 
     const [dataArr, setDataArr] = useState(null);
-    const [moviesByActor, setMoviesByActor] = useState(null);
+    const [moviesByActor,  setMoviesByActor] = useState(null);
     const [name, setName] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -20,15 +20,20 @@ export function App() {
         []);
 
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        getMoviesByActor(name);
+        let moviesByActorList = await getMoviesByActor(name);
         setIsSubmitted(true);
-        alert(`The name you entered was: ${name}`)
+        setMoviesByActor(moviesByActorList);
+        console.log('moviesByActor', moviesByActor);
+       console.log('moviesByActorList', moviesByActorList);
+
+
     }
 
     return (
-        <>
+        <div className="wrapper">
             <form onSubmit={handleSubmit}>
                 <label>Enter your actor name:
                         <input 
@@ -45,17 +50,17 @@ export function App() {
                 <div className="red-box"> </div>
                 <div className="blue-box"> </div>
                 </div>
-<CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>
- {/* {isSubmitted ? <CarouselComp id='carouselcomp' data={name}></CarouselComp> : false} */}
+        {/* do this as a single if statement */}
+ {isSubmitted ? <CarouselComp id='carouselcomp' data={moviesByActor}></CarouselComp> : <CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>}
 
-    <div className="container" id= "card-container">
+    <div className="container" id="card-container">
     <div id='card'className='Card'>
       <div className="imageContainer">
       <img src="https://www.shutterstock.com/image-vector/euphoria-quotetrippy-letteringvector-hand-drawn-600w-2252653729.jpg" alt="Euthoria series" className='image'/> 
       </div>
     </div>
     </div>
-        </>
+    </div>
     );
 }
 
