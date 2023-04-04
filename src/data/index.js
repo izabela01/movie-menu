@@ -5,7 +5,6 @@
 
         if( response.status >= 200 && response.status < 400){ 
         let data = await response.json();
-        console.log('**** Data Set ***** ', data);
         console.log('*** accessing array ****', data.results);
 
         // Cycling through the array, printing the title field of each movie object

@@ -33,7 +33,7 @@ export function App() {
     }
 
     return (
-        <>
+        <div className="wrapper">
             <form onSubmit={handleSubmit}>
                 <label>Enter your actor name:
                         <input 
@@ -50,17 +50,17 @@ export function App() {
                 <div className="red-box"> </div>
                 <div className="blue-box"> </div>
                 </div>
-<CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>
- {isSubmitted ? <CarouselComp id='carouselcomp' data={moviesByActor}></CarouselComp> : false}
+        {/* do this as a single if statement */}
+ {isSubmitted ? <CarouselComp id='carouselcomp' data={moviesByActor}></CarouselComp> : <CarouselComp id='carouselcomp' data={dataArr}></CarouselComp>}
 
-    <div className="container" id= "card-container">
+    <div className="container" id="card-container">
     <div id='card'className='Card'>
       <div className="imageContainer">
       <img src="https://www.shutterstock.com/image-vector/euphoria-quotetrippy-letteringvector-hand-drawn-600w-2252653729.jpg" alt="Euthoria series" className='image'/> 
       </div>
     </div>
     </div>
-        </>
+    </div>
     );
 }
 
