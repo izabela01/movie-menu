@@ -1,48 +1,38 @@
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #0A192F, #fff);
+  width: 100vw;
+  height: 100vh;
+}
 
-html {
-  font-size: 16px;
+.search-label{
+  font-size: 50;
+  margin-bottom: 10px;
+  color: white;
+  font: 'Courier';
+}
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items:   center;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+.submit-button{
+  margin-top: 10px;
+  background-color: #006efff0; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 5px;
+  cursor: pointer; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4); 
+  transition: all 0.3s ease; 
 }
 
 h1 {
   font-size: 2.5rem;
 }
-
-.red-box{
-    background-color: red;
-    width: 100px;
-    height: 100px; 
-  }
-  
-  .blue-box{
-    background-color: blue;
-    width: 100px;
-    height: 100px; 
-  }
-  
-  .container{
-    display: flex;
-  }
-  
-
-
-
-  .Card {
-display: flex; 
-align-items: center;
-flex-direction: column;
-background-color: grey;
-width: 15vw;
-height: 30vh;
-overflow: hidden;
-  }
-
-  .imageContainer{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .image{
-    height: 80%;
-    width: 95%;
-  }

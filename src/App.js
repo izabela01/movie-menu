@@ -33,23 +33,18 @@ export function App() {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <div className="wrapper">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Enter your actor name:
+      <form onSubmit={handleSubmit} className="form-container">
+        <label className="search-label">Search by Actor</label>
+        <label className="form-inner-container">
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <input type="submit" />
+        <input type="submit" value="Search" className="submit-button" />
       </form>
 
-      <h1>Movies</h1>
-      <div className="container">
-        <div className="red-box"> </div>
-        <div className="blue-box"> </div>
-      </div>
       {/* do this as a single if statement */}
       {isSubmitted ? <CarouselComp id="carouselcomp" data={moviesByActor} /> : <CarouselComp id="carouselcomp" data={dataArr} />}
 

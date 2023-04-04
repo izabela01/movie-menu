@@ -20,8 +20,7 @@ export function CarouselComp(props) {
           />
 
           <Carousel.Caption>
-            <h3>{movie.original_title}</h3>
-            <p>{movie.overview}</p>
+            <p className="overview-background">{movie.overview}</p>
           </Carousel.Caption>
         </Carousel.Item>
       )) : false }
