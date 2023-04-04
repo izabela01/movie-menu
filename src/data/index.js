@@ -1,10 +1,10 @@
+/* eslint-disable consistent-return */
 export async function getData(url) {
-  // Fetch the data - useEffect or fetch
   const response = await fetch(url);
 
   if (response.status >= 200 && response.status < 400) {
     const data = await response.json();
-    console.log('*** accessing array ****', data.results);
+    console.log('*** Movies array ****', data.results);
 
     return data.results;
   }

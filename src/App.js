@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
-import {CarouselComp} from './features/CarouselComp.jsx';
+import { CarouselComp } from './features/CarouselComp.jsx';
 import { getData, getMoviesByActor } from './data/index';
 
 export function App() {
