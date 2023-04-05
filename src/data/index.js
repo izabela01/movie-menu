@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-export async function getData(url) {
+export async function getMovies(url) {
   const response = await fetch(url);
 
   if (response.status >= 200 && response.status < 400) {
