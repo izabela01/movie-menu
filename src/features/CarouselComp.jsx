@@ -9,12 +9,12 @@ export function CarouselComp(props) {
   const { data } = props;
 
   return (
-    <Carousel className="Carousel">
+    <Carousel className="carousel">
 
       {data ? data.map((movie) => (
         <Carousel.Item key={movie.id}>
           <img
-            className="d-block w-100"
+            className="carousel-image"
             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt=""
           />
