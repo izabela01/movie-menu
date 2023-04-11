@@ -15,9 +15,11 @@ export function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const moviesByActorList = await getMoviesByActor(name);
-    setIsSubmitted(true);
-    setMoviesByActor(moviesByActorList);
-    console.log(' *** moviesByActorList *** ', moviesByActorList);
+    if (moviesByActorList) {
+      setIsSubmitted(true);
+      setMoviesByActor(moviesByActorList);
+      console.log(' *** moviesByActorList *** ', moviesByActorList);
+    }
   };
   useEffect(
     async () => {
