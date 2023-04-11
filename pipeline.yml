@@ -34,5 +34,6 @@ jobs:
         args:
         - -exc
         - |
+        npm install
         npm run build
         path: /bin/sh
