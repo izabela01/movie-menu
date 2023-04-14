@@ -10,11 +10,12 @@ export function App() {
   const [movies, setMovies] = useState(null);
   const [moviesByActor, setMoviesByActor] = useState(null);
   const [name, setName] = useState('');
+  const [nameTwo, setNameTwo] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const moviesByActorList = await getMoviesByActor(name);
+    const moviesByActorList = await getMoviesByActor(name, nameTwo);
     if (moviesByActorList) {
       setIsSubmitted(true);
       setMoviesByActor(moviesByActorList);
@@ -37,6 +38,11 @@ export function App() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            value={nameTwo}
+            onChange={(e) => setNameTwo(e.target.value)}
           />
         </label>
         <input type="submit" value="Search" className="submit-button" />

@@ -11,25 +11,30 @@ export async function getMovies(url) {
   console.log('error: api request error');
 }
 
-export async function getMoviesByActor(name) {
-  const urlStart = 'https://api.themoviedb.org/3/search/person?query=';
-  const names = name.split(' ');
-  console.log('names', names);
-  const formattedName = names.join('%20');
-  const urlEnd = '&api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&page=1&include_adult=true';
-  console.log(urlStart + formattedName + urlEnd);
-  const response = await fetch(urlStart + formattedName + urlEnd);
-  const data = await response.json();
-  console.log('getMoviesByActor', await data);
+export async function getMoviesByActor(name, nameTwo) {
+  console.log('names!! ', name, nameTwo);
+  const actorsNames = [name, nameTwo];
 
-  const moviesResults = data.results;
-  console.log('moviesResults', moviesResults);
-  const movies = moviesResults.filter((result) => result.known_for.length > 0);
-  console.log('movies', movies);
+  const data = Promise.all(actorsNames.map(async (actor) => {
+    const urlStart = 'https://api.themoviedb.org/3/search/person?query=';
+    const names = actor.split(' ');
+    console.log('names', names);
+    const formattedName = names.join('%20');
+    const urlEnd = '&api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&page=1&include_adult=true';
+    console.log(urlStart + formattedName + urlEnd);
+    const response = await fetch(urlStart + formattedName + urlEnd);
+    const formattedResponse = await response.json();
+    return formattedResponse;
+  }));
 
-  if (movies.length > 0) {
-    return movies[0].known_for;
-  }
+  console.log('data in async', await data);
 
-  alert('Actor cannot be found, please double check spelling and try again!');
+  // const moviesResults = data.results;
+  // const movies = moviesResults.filter((result) => result.known_for.length > 0);
+
+  // if (movies.length > 0) {
+  //   return movies[0].known_for;
+  // }
+
+  // alert('Actor cannot be found, please double check spelling and try again!');
 }
