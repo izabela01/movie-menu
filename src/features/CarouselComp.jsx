@@ -8,6 +8,7 @@ import Carousel from 'react-bootstrap/Carousel';
 export function CarouselComp(props) {
   const { data } = props;
 
+  console.log('what movies carousel gets', data);
   return (
     <Carousel className="carousel">
 

@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { CarouselComp } from './features/CarouselComp.jsx';
-import { getMovies, getMoviesByActor } from './data/index';
+import { getMovies, getMoviesByActors } from './data/index';
 
 export function App() {
   const [movies, setMovies] = useState(null);
@@ -15,7 +15,14 @@ export function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const moviesByActorList = await getMoviesByActor(name, nameTwo);
+
+    let moviesData;
+    if (nameTwo) {
+      moviesData = [name, nameTwo];
+    } else {
+      moviesData = [name];
+    }
+    const moviesByActorList = await getMoviesByActors(moviesData);
     if (moviesByActorList) {
       setIsSubmitted(true);
       setMoviesByActor(moviesByActorList);
