@@ -1,41 +1,32 @@
-/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable quotes */
 /* eslint-disable import/extensions */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
-import { CarouselComp } from './features/CarouselComp.jsx';
-import { getMovies, getMoviesByActors } from './data/index';
+import React, { useEffect, useState } from "react";
+import { CarouselComp } from "./features/CarouselComp.jsx";
+import { getMovies, getMoviesByActors } from "./data/index";
 
 export function App() {
   const [movies, setMovies] = useState(null);
   const [moviesByActor, setMoviesByActor] = useState(null);
-  const [name, setName] = useState('');
-  const [nameTwo, setNameTwo] = useState('');
+  const [name, setName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let moviesData;
-    if (nameTwo) {
-      moviesData = [name, nameTwo];
-    } else {
-      moviesData = [name];
-    }
+    const moviesData = [name];
     const moviesByActorList = await getMoviesByActors(moviesData);
     if (moviesByActorList) {
       setIsSubmitted(true);
       setMoviesByActor(moviesByActorList);
-      console.log(' *** moviesByActorList *** ', moviesByActorList);
+      console.log(" *** moviesByActorList *** ", moviesByActorList);
     }
   };
-  useEffect(
-    async () => {
-      const moviesList = await getMovies('https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate');
-      setMovies(moviesList);
-    },
-    [],
-  );
+  useEffect(async () => {
+    const moviesList = await getMovies(
+      "https://api.themoviedb.org/3/discover/movie?api_key=7ceb5ca6f93c5d8c993f1f5783f5ccf0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+    );
+    setMovies(moviesList);
+  }, []);
   return (
     <div className="wrapper">
       <form onSubmit={handleSubmit} className="form-container">
@@ -46,17 +37,15 @@ export function App() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <input
-            type="text"
-            value={nameTwo}
-            onChange={(e) => setNameTwo(e.target.value)}
-          />
         </label>
         <input type="submit" value="Search" className="submit-button" />
       </form>
 
-      {isSubmitted ? <CarouselComp id="carouselcomp" data={moviesByActor} /> : <CarouselComp id="carouselcomp" data={movies} />}
-
+      {isSubmitted ? (
+        <CarouselComp id="carouselcomp" data={moviesByActor} />
+      ) : (
+        <CarouselComp id="carouselcomp" data={movies} />
+      )}
     </div>
   );
 }
